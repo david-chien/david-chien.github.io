@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='prism.css' rel='stylesheet' type='text/css'/>
+    <meta charset="UTF-8">
+    <title>David Chien</title>
+</head>
+<body class="line-numbers">
+	<script src='prism.js ' type='text/javascript'></script>
+<pre>
+<code class="language-python">def main():
+    from sys import stdin, stdout
+    e = stdin.readline
+    n, m, k = map(int, e().split())   
+    NK = e().strip().split()[1:]           # 一開始送的 key
+    dr = [k] * n                           # 宣告每個寶盒需被開了幾次 
+    gr = [0] * n                           # 開了某個寶盒，能獲得的 key
+    kr = {str(i): [] for i in range(m)}    # 某 key 能開哪幾個寶盒
+
+    for _ in range(n):                     # 前半段紀錄某 key 能開某盒
+        for t in e().strip().split(): 
+            kr[t].append(_)
+
+    for _ in range(n):                     # 後半段紀錄 某盒 能得某 key
+        gr[_] = e().strip().split()
+  
+    r = 0
+    while(NK):                             # bfs 先拿送的 key 來開
+        k = NK.pop()
+        for b in kr[k]:                    # kr[k] 表某 key 能開那些盒子
+            if(dr[b]):                     # dr[b] 某盒尚待開的次數
+                dr[b] -= 1                 # 開過減一
+                if(dr[b] == 0):            # this box 都開了 r++
+                    r += 1                 # get some keys for next round
+                    NK += [z for z in gr[b] if kr[z]]
+                        
+        kr[k] = []
+        
+    print(r)
+main()
+</code>
+</pre>
+</body>
+</html>
+</html>
