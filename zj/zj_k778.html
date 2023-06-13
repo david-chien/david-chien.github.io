@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='prism.css' rel='stylesheet' type='text/css'/>
+    <meta charset="UTF-8">
+    <title>David Chien</title>
+</head>
+<body class="line-numbers">
+	<script src='prism.js ' type='text/javascript'></script>
+<pre>
+<code class="language-python">def main():
+    from sys import stdin
+    e = stdin.readline
+    # 這題 r * c <= 40 直接建質數表 P，
+    # 因為要重複使用，用一維就好了
+    P = [0,1,1,0,1,0,1,0,0,0,1,0,1,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0,1,0,0,0]
+    # 這是每一格可走的 delta y, delta x
+    Dyx = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+    for _ in range(int(e())):
+        # 讀取 r, c
+        r, c = map(int, e().split())
+        # V = 要 bfs 訪問的出發點
+        # U copy 上面的質數表
+        # rc 是出口的一維座標 = r * c - 1
+        V, U, ans, rc, err = [0], P, 0, r * c - 1, 0
+        U[0] = 1
+        while(V):
+            tmp = []
+            # 檢查每一個 bfs 的點
+            for v in V:
+                y, x = divmod(v, c)
+                # 將 v 轉回 y, x 
+                for dy, dx in Dyx:
+                    _y = y + dy
+                    _x = x + dx
+                    # y, x 結合 4 個 deltay, delta x
+                    # 新點必須合於規則
+                    if(_y >= 0 and _x >= 0 and _y < r and _x < c):
+                        nu = _y * c + _x
+                        # 將新點座標轉為一維
+                        # 如果已到出口則回報
+                        if(nu == rc):
+                            err = 1; ans += 1; break
+                        # 如果新點非質數
+                        # 增到待訪點
+                        # 新點的值設 1 避免再訪問
+                        if(U[nu] == 0):
+                            tmp.append(nu)
+                            U[nu] = 1
+                if(err): break
+            if(err): break
+            V = tmp
+            r += 1
+        if(err): print(ans if err else -1)
+main()
+</code>
+</pre>
+</body>
+</html>
+</html>
