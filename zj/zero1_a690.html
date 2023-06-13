@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='prism.css' rel='stylesheet' type='text/css'/>
+    <meta charset="UTF-8">
+    <title>David Chien</title>
+</head>
+<body class="line-numbers">
+	<script src='prism.js ' type='text/javascript'></script>
+<pre>
+<code class="language-python"># 典型的 bfs 題目
+
+def main():
+    from sys import stdin, stdout
+    e = stdin.readline
+    w = stdout.write
+    n, m, y, x = map(int, e().split())
+    x -= 1; y -= 1                   # 把出發點的座標改為 zero indexed
+    f = [[-1] * m for i in range(n)] # 先宣告一個二維的 list 初值 -1
+    f[y][x] = 0                      # 依題義 出發點是 0
+    V, r = [(y, x)], 0               # V 是待訪的座標, r 是回合數
+    # Dyx 是每個座標可走馬步的 delta y and delta x  有八個點
+    Dyx = [(2,1),(1,2),(-1,2),(-2,1),(-2,-1),(-1,-2),(1,-2),(2,-1)]
+    while(V):     # 檢查所有的待訪點，如果此點能衍生新點，才會持續
+        r += 1    # 回合數 ++
+        tmp = []  # 衍生的點先記錄於此
+        for y, x in V:
+            for dy, dx in Dyx:
+                _y = y + dy
+                _x = x + dx
+                # 對每個待訪點檢查 8 個可走點
+                # 先檢查不可超出棋盤外
+                # 該點值如為 -1 表示未被巡訪
+                # 將此點給回合數的值，並記錄至衍生點 tmp
+                if(_y >= 0 and _x >= 0 and _y < n and _x < m):
+                    if(f[_y][_x] == -1):
+                        tmp.append((_y, _x))
+                        f[_y][_x] = r
+        
+        V = tmp # V 有值才會下一輪
+    
+    # 底下依題意輸出 
+    for u in f: w(''.join(str(z).rjust(5) for z in u) + '\n')
+main()
+
+
+</code>
+</pre>
+</body>
+</html>
+</html>
