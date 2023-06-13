@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='prism.css' rel='stylesheet' type='text/css'/>
+    <meta charset="UTF-8">
+    <title>David Chien</title>
+</head>
+<body class="line-numbers">
+	<script src='prism.js ' type='text/javascript'></script>
+<pre>
+<code class="language-python">def main():
+    from sys import stdin
+    from datetime import date, timedelta
+    e = stdin.readline
+    # 這題由範例推算出基準日為 2089/07/08
+    base = date(2089, 7, 18)
+    y, m, d = map(int, e().split('.'))
+    # 輸入和基準日的一日為輸出的一年
+    # 先算出日數差
+    d0 = date(y, m, d)
+    dt = (d0 - base).days
+    # 差值如為正數需加 1 因為沒有 0 年
+    if(dt &lt; 0): print(f'{-dt} B.P.')
+    else:
+        dt = dt + 1 
+        print(f'{dt} A.P.')
+main()
+</code>
+</pre>
+</body>
+</html>
+</html>
