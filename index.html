@@ -1,49 +1,10 @@
+<!DOCTYPE html>
 <html>
-<head>
-<link href="default.css" type="text/css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-<title>
-</title>
-</head>
-<body>
-<pre class="prettyprint  linenums">import sys
-
-def chk(v):
-    vv = str(v)
-    for x in vv: 
-        if(x in '02468'): return False
-    return True
+  <head>
+    <meta charset="utf-8">
+    <title>你好</title>
+  </head>
+  <body>
     
-def gb(v):
-    vv = str(v)
-    for i in range(len(vv)):
-        if(vv[i] in '02468'):
-            r = '{}{}{}'.format(vv[:i], int(vv[i])+1, '1'*(len(vv)-i-1))
-            return int(r)
-
-def gs(v): 
-    vv = str(v).strip()
-    for i in range(len(vv)):
-        if(vv[i] in '02468'):
-            h = vv[:i]
-            if(h != ''): h = int(h)
-            m = int(vv[i]) - 1
-            t = '9'*(len(vv)-i-1)
-            if(m < 0):
-                m = 9
-                h -= 1
-            if(h == 0): h = ''
-            r = int('{}{}{}'.format(h, m, t))
-            if(chk(r)): return r
-            else: return gb(r)
-
-for s in sys.stdin:
-    s = s.strip()
-    if(s == ''): print(); continue
-    n = int(s)
-    B = gb(n + 1)
-    S = gs(n - 1)
-        #print(S)
-    print(B, S)</pre>
-</body>
+  </body>
 </html>
