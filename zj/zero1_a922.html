@@ -10,7 +10,7 @@
     <title></title>
   </head>
   <body><div>
-    <pre><code class="python linenum">def chg(n): return sum([n//i for i in range(1, int(n**0.5)+1)]) * 2 - int(n**0.5)**2
+    <pre><code class="python">def chg(n): return sum([n//i for i in range(1, int(n**0.5)+1)]) * 2 - int(n**0.5)**2
 a, b = map(int, input().split())
 print(chg(b) - chg(a - 1))
     </code></pre>
