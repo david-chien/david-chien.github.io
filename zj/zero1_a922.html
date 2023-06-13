@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/github-gist.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <title></title>
+  </head>
+  <body>
+    <pre><code class="python">def chg(n): return sum([n//i for i in range(1, int(n**0.5)+1)]) * 2 - int(n**0.5)**2
+a, b = map(int, input().split())
+print(chg(b) - chg(a - 1))
+    </code></pre>
+  </body>
+</html>
