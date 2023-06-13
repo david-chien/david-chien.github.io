@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-  <link href="default.css" type="text/css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-    <title></title>
-  </head>
-  <body>
-    <pre class="prettyprint  linenums">def chg(n): return sum([n//i for i in range(1, int(n**0.5)+1)]) * 2 - int(n**0.5)**2
+<head>
+<link href="default.css" type="text/css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+<style>
+        .prettyprint ol.linenums > li { list-style-type: decimal; }
+    </style>
+<title>
+</title>
+</head>
+<body>
+<pre class="prettyprint  linenums">def chg(n): return sum([n//i for i in range(1, int(n**0.5)+1)]) * 2 - int(n**0.5)**2
 a, b = map(int, input().split())
 print(chg(b) - chg(a - 1))
-    </code></pre>
-   
-  </body>
+</body>
 </html>
