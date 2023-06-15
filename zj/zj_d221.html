@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='prism.css' rel='stylesheet' type='text/css'/>
+    <meta charset="UTF-8">
+    <title>David Chien</title>
+</head>
+<body class="line-numbers">
+	<script src='prism.js ' type='text/javascript'></script>
+<pre>
+<code class="language-python">import sys
+from heapq import *
+opt = ''
+for s in sys.stdin:
+    if(s == '0\n'): break
+    f = [int(x) for x in sys.stdin.readline().split()]
+    heapify(f) # 將 list 轉為 heap
+    r = 0
+    while(len(f) > 1):
+        tmp = heappop(f) + heappop(f)
+        # 從 heap 取出並回傳最小的元素。
+        r += tmp
+        heappush(f, tmp)
+        #把 item 放進 heap。
+    opt += '{}\n'.format(r)
+sys.stdout.write(opt.strip())
+# 因為是嚴格比對，將總輸出先去掉尾部換行
+# 一次印出，避免 OLE
+</code>
+</pre>
+</body>
+</html>
