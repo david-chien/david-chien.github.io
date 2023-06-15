@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='prism.css' rel='stylesheet' type='text/css'/>
+    <meta charset="UTF-8">
+    <title>David Chien</title>
+</head>
+<body class="line-numbers">
+	<script src='prism.js ' type='text/javascript'></script>
+<pre>
+<code class="language-python">def main():
+    from sys import stdin
+    from heapq import heapify, heappush, heapreplace
+    from math import ceil
+    e = stdin.readline
+    n, m = map(int, e().split())
+    # 引用 heapq 每次都可從堆中取出最小值
+    # 本題是要找最大的石頭，所以初值都給負值
+    f = [-float(x) for x in e().split()]
+    # 把 list 轉成 heap
+    heapify(f)
+    # 有 m 次機會
+    # f[0] 是最小值
+    while(m):
+        # 將 f[0] 炸成 2 塊
+        t = f[0] / 2
+        # 一塊用 replace 跟 f[0] 換
+        heapreplace(f, t)
+        # 一塊 push 進去
+        heappush(f, t)
+        m -= 1
+    # f[0] 是答案, 將它轉回正值且向上取整
+    r = ceil(-f[0])
+    print(r)
+main()
+</code>
+</pre>
+</body>
+</html>
+</html>
