@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='prism.css' rel='stylesheet' type='text/css'/>
+    <meta charset="UTF-8">
+    <title>David Chien</title>
+</head>
+<body class="line-numbers">
+	<script src='prism.js ' type='text/javascript'></script>
+<pre>
+<code class="language-python">def solve(arr, target):
+    # python 0/1 背包仿 bitset 解
+    # python 0/1 Knapsack Problem like bitset
+    # 此解求出 大於等於 目標子集和的解
+    a = 1
+    for x in arr: a |= (a << x)
+    a = bin(a)[2:]
+    return a.find('1', target)
+
+def main():
+    from sys import stdin
+    e = stdin.readline
+    # m 是櫃子總數 s 是需求
+    m, s, n = map(int, e().split())
+    # sum(f) 是被借出的合計
+    f = [int(x) for x in e().split()]
+    # b 是剩餘
+    b = m - sum(f)
+    if(b >= s): print(0)
+    else:
+       # s - b 是真正的需求 sb
+       # 還回的量需 >= sb
+       r = solve(f, s - b)
+       print(r)
+main()</code>
+</pre>
+</body>
+</html>
