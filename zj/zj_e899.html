@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='prism.css' rel='stylesheet' type='text/css'/>
+    <meta charset="UTF-8">
+    <title>David Chien</title>
+</head>
+<body class="line-numbers">
+	<script src='prism.js ' type='text/javascript'></script>
+<pre>
+<code class="language-python">def main():
+    from sys import stdin, stdout
+    # 因為要 % 10007 發現 > 5003 都是 0
+    d = [0] * 5005           
+    d[1] = 1
+    for i in range(2, 5004):  # oeis 查到的公式
+        d[i] = (2*(2*i-1)*d[i-1]//(i+1))
+        
+    for s in stdin:
+        # 開始 input 只剩查表
+        n = int(s)
+        if(n == 0): break
+        if(n > 5003): stdout.write('0\n')
+        else: stdout.write(f'{ d[n]%10007 }\n')
+main()
+</code>
+</pre>
+</body>
+</html>
