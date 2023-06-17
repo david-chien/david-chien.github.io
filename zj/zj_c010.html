@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='prism.css' rel='stylesheet' type='text/css'/>
+    <meta charset="UTF-8">
+    <title>David Chien</title>
+</head>
+<body class="line-numbers">
+	<script src='prism.js ' type='text/javascript'></script>
+<pre>
+<code class="language-python">import sys
+import bisect
+# 這個模組維護一個已經排序過的 list
+# 當我們每次做完插入後不需要再次排序整個 list
+# https://docs.python.org/zh-tw/3/library/bisect.html
+
+f = []
+h = 0  # f 的長度
+for s in sys.stdin:
+    n = int(s)
+    bisect.insort(f, n)
+    h += 1
+    if(h % 2 == 0):
+        m = (f[h//2] + f[h//2-1]) // 2
+    else:
+        m = (f[h//2])
+    print(m)</code>
+</pre>
+</body>
+</html>
