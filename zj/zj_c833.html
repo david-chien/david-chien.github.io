@@ -8,29 +8,32 @@
 <body class="line-numbers">
 	<script src='prism.js ' type='text/javascript'></script>
 <pre>
-<code class="language-python">def solve(arr, target):
-    # python 0/1 背包仿 bitset 解
-    # python 0/1 Knapsack Problem like bitset
-    # 此解求出 等於 目標子集和的解
-    a = 1
-    for x in arr: a |= (a << x)
-    a = bin(a)[2:]
-    return a[target] == '1'
-
-def main():
-    from sys import stdin
+<code class="language-python">def main():
+    from sys import stdin, stdout
     e = stdin.readline
-    T = int(e())
-    for _ in range(T):
-        n = int(e())
-        p = int(e())
-        f = [int(x) for x in e().split()]
-        # n == 0 --> YES
-        # n in f --> YES
-        # n > sum(f) NO
-        if(n == 0 or n in f): print('YES')
-        elif(sum(f) < n): print('NO')
-        else: print('YES' if solve(f, n) else 'NO')
+    w = stdout.write
+    n, m = map(int, e().split())
+    Y = [0] * n         # 這要記錄 Y 軸是否有值
+    X = 0               # 這要記錄 X 軸
+    for r in range(n):
+        s = e()
+        if('#' in s):   # 根據 readline
+            Y[r] = 1    # 如果本列包含 #, Y[r] = 1
+            # 這裡要記錄 X
+            # 將 # 轉為 1 將 . 轉為 0 視為 2 進位字串
+            # 將字串轉為整數，跟 X 做 or 運算，很快喔
+            s = s.replace('#', '1').replace('.', '0')
+            X |= int(s, 2)
+
+    # 輸出就2種可能 Y[r] == 1, 整列輸出 mp
+    # 否則輸出 m0
+    # m0 先將 X 轉 2 進位，前面補 0
+    # 將 1 轉 #, 將 0 轉 X
+    mp = '#' * m + '\n'
+    m0 = bin(X)[2:].zfill(m).replace('1', '#').replace('0', 'X') + '\n'
+    for r in range(n):
+        if(Y[r]): w(mp)
+        else: w(m0)
 main()</code>
 </pre>
 </body>
