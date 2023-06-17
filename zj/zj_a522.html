@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='prism.css' rel='stylesheet' type='text/css'/>
+    <meta charset="UTF-8">
+    <title>David Chien</title>
+</head>
+<body class="line-numbers">
+	<script src='prism.js ' type='text/javascript'></script>
+<pre>
+<code class="language-python">def solve(arr, target):
+    # python 0/1 背包仿 bitset 解
+    # python 0/1 Knapsack Problem like bitset
+    # 此解求出 等於 目標子集和的解
+    a = 1
+    for x in arr: a |= (a << x)
+    a = bin(a)[2:]
+    return a[target] == '1'
+
+def main():
+    from sys import stdin
+    e = stdin.readline
+    T = int(e())
+    for _ in range(T):
+        n = int(e())
+        p = int(e())
+        f = [int(x) for x in e().split()]
+        # n == 0 --> YES
+        # n in f --> YES
+        # n > sum(f) NO
+        if(n == 0 or n in f): print('YES')
+        elif(sum(f) < n): print('NO')
+        else: print('YES' if solve(f, n) else 'NO')
+main()</code>
+</pre>
+</body>
+</html>
