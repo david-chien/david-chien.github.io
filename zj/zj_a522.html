@@ -16,7 +16,6 @@
     for x in arr: a |= (a << x)
     a = bin(a)[2:]
     return a[target] == '1'
-
 def main():
     from sys import stdin
     e = stdin.readline
