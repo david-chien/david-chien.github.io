@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='prism.css' rel='stylesheet' type='text/css'/>
+    <meta charset="UTF-8">
+    <title>David Chien</title>
+</head>
+<body class="line-numbers">
+	<script src='prism.js ' type='text/javascript'></script>
+<pre>
+<code class="language-python">def main():
+    from sys import stdin, stdout
+    e = stdin.readline
+    w = stdout.write
+    s = e()
+    r = ''
+    for i in range(65, 93):
+        ch = chr(i)
+        r += ch * s.count(ch)
+    w(r)
+main()</code>
+</pre>
+</body>
+</html>
