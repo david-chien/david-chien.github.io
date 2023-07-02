@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='prism.css' rel='stylesheet' type='text/css'/>
+    <meta charset="UTF-8">
+    <title>David Chien</title>
+</head>
+<body class="line-numbers">
+	<script src='prism.js ' type='text/javascript'></script>
+<pre>
+<code class="language-python">def d2r(n):
+    ans = ''
+    rd = ([('M' , 1000), ('CM', 900), ('D', 500), ('CD', 400),
+           ('C',   100), ('XC',  90), ('L',  50), ('XL',  40), 
+           ('X',    10), ('IX',   9), ('V',   5), ('IV',   4), 
+           ('I',     1)])
+    # 一連串的減法
+    # 計算過程只有 M, C, X, I 會出現複數
+    # 其餘必定是單數
+    for r, d in rd:
+        a, b = divmod(n, d)
+        ans += r * a
+        n = b
+    return ans if ans else 'ZERO'
+
+def r2d(s):
+    ans = 0
+    rd = ([('CM', 900), ('M' , 1000), ('CD', 400), ('D', 500), 
+           ('XC',  90), ('C',   100), ('XL',  40), ('L',  50),  
+           ('IX',   9), ('X',    10), ('IV',   4), ('V',   5), 
+           ('I',    1)])
+    # 一連串的加法
+    # 也是用上面的表，改了優先順序
+    for r, d in rd:
+        ans += d * s.count(r)
+        s = s.replace(r, '')
+    return ans 
+
+def main():
+    from sys import stdin
+    e = stdin.readline
+    for s in stdin:
+        if(s == '#\n'): break
+        n, m = map(r2d, s.split())
+        a = abs(n - m)
+        print(d2r(a))
+main()</code>
+</pre>
+</body>
+</html>
