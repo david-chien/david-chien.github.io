@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='prism.css' rel='stylesheet' type='text/css'/>
+    <meta charset="UTF-8">
+    <title>David Chien</title>
+</head>
+<body class="line-numbers">
+	<script src='prism.js ' type='text/javascript'></script>
+<pre>
+<code class="language-python">def main():
+    from sys import stdin, stdout
+    C = ({'0':[0,0,0,0], '1':[2,1,2,1], '2':[4,2,4,2], '3':[6,3,6,3],
+          '4':[8,4,8,4], '5':[1,5,1,5], '6':[3,6,3,6], '7':[5,7,5,7],
+          '8':[7,8,7,8], '9':[9,9,9,9]})
+           
+    d = {}
+    p = [0,1,2,3]
+    for i in range(10000):
+        s = str(i).zfill(4)
+        r = sum([C[a][b] for a, b in zip(s,p)])
+        d[s] = r
+    e = ['Valid','I','I','I','I','I','I','I','I','I']  
+    op = lambda x: e[sum([d[c] for c in x.split()])%10]
+    n = stdin.readline()
+    R = '\n'.join(map(op, stdin.readlines())).replace('I', 'Invalid')
+    stdout.write(f'{R}')
+main()</code>
+</pre>
+</body>
+</html>
